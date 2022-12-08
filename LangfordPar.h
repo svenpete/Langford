@@ -11,7 +11,7 @@
 #include <sstream>
 #include <tbb/tbb.h>
 using namespace std;
-class LangfordSeq
+class LangfordPar
 {
 public:
     int n;
@@ -22,7 +22,7 @@ public:
     int laenge_seq;
     int Anz_Werte;
 
-    LangfordSeq(int n)
+    LangfordPar(int n)
     {
         this -> n = n;
         langford_seq = vector<int>(2 * n, 0);
@@ -31,12 +31,13 @@ public:
 
     }
 
-    void execute()
-    {
-        langford(langford_seq, this -> n);
+
+    class LangfordParTask{
+    public:
+        LangfordParTask()
     }
 
-    void langford(vector<int> langford_seq, int index)
+    void operator()()
     {
 
         int laenge_seq = this->laenge_seq;
